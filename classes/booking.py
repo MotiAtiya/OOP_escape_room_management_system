@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Booking:
     booking_id:str
@@ -21,7 +22,7 @@ class Booking:
         self.start_time = start_time
         self.players = players
         self.total_price = total_price
-        
+
     def to_dict(self):
         return {
             "booking_id": self.booking_id,
