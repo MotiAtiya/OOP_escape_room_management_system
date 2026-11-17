@@ -1,9 +1,13 @@
 import datetime
+from .room import Room
+from .booking import Booking
+# from booking import Booking
+
 
 class PricingManager:
     @classmethod
-    def calculate_price(cls, room, players, booking_date) -> float:
-        price = room['price_per_player'] * players
+    def calculate_price(cls, room:Room, players, booking_date) -> float:
+        price = room.price_per_player * players
         if 5 <= players <= 6:
             price -= price * 10 / 100
         elif players >= 7:
@@ -15,13 +19,15 @@ class PricingManager:
         
         return round(price, 2)
 
-    def calculate_cancellation_fee(self, booking, current_datetime) -> float:
-        booking_datetime = datetime.datetime.strptime(booking['booking_date'], "%Y-%m-%d")
+    @classmethod
+    def calculate_cancellation_fee(cls, booking:Booking, current_datetime) -> float:
+        print(repr(booking))
+        # booking_datetime = datetime.datetime.strptime(booking['booking_date'], "%Y-%m-%d")
         fee = 0
-
+        booking_datetime = booking.booking_date
         if current_datetime + datetime.timedelta(hours=6) <= booking_datetime <= current_datetime + datetime.timedelta(hours=24):
-            fee = booking['total_price'] * 25 / 100
+            fee = booking.total_price * 25 / 100
         elif booking_datetime < current_datetime + datetime.timedelta(hours=6):
-            fee = booking['total_price'] * 50 / 100
+            fee = booking.total_price * 50 / 100
 
         return fee
