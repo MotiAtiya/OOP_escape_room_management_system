@@ -1,8 +1,8 @@
 import datetime
 
-
 class PricingManager:
-    def calculate_price(self, room, players, booking_date) -> float:
+    @classmethod
+    def calculate_price(cls, room, players, booking_date) -> float:
         price = room['price_per_player'] * players
         if 5 <= players <= 6:
             price -= price * 10 / 100
