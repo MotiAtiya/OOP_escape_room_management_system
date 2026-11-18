@@ -1,4 +1,4 @@
-from .room import Room, ROOM_OPENING_TIME, ROOM_CLOSING_TIME, ROOM_PREPERATION_TIME
+from .room import Room
 from .booking import Booking
 from .pricing_manager import PricingManager
 from .menu_manager import MenuManager
@@ -45,8 +45,8 @@ class BookingManager:
 
 
     def __validate_room_opening_hours(self, booking_start_time:datetime.time, room):
-        start_day = datetime.time(hour=ROOM_OPENING_TIME)
-        end_day = datetime.time(hour=ROOM_CLOSING_TIME)
+        start_day = datetime.time(hour = Room.ROOM_OPENING_TIME)
+        end_day = datetime.time(hour = Room.ROOM_CLOSING_TIME)
         
         if booking_start_time < start_day:
             raise ValueError(f"The escape room is open from {start_day}")
@@ -55,7 +55,7 @@ class BookingManager:
         booking_end_time = (datetime.datetime.combine(datetime.date.today(), booking_start_time) + duration).time()
 
         if booking_end_time > end_day:
-            raise ValueError(f"The game must finish before {ROOM_CLOSING_TIME}:00 (the game takes {room.duration} minutes)")
+            raise ValueError(f"The game must finish before {Room.ROOM_CLOSING_TIME}:00 (the game takes {room.duration} minutes)")
 
     def check_availability(self, room_id, booking_date, start_time, exclude_booking_id=None):
         bookings_in_this_date = self.get_bookings_by_date(booking_date)
@@ -64,7 +64,7 @@ class BookingManager:
 
         room = list(filter(lambda r: r.room_id == room_id, self.rooms))[0]
         duration = datetime.timedelta(minutes = room.duration)
-        preparation_time = datetime.timedelta(minutes = ROOM_PREPERATION_TIME)
+        preparation_time = datetime.timedelta(minutes = Room.ROOM_PREPERATION_TIME)
 
         booking_datetime_start = datetime.datetime.combine(booking_date, start_time)
         booking_datetime_end = booking_datetime_start + duration + preparation_time

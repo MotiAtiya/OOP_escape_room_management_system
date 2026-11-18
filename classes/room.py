@@ -1,19 +1,25 @@
-from dataclasses import dataclass
-
-ROOM_OPENING_TIME = 10
-ROOM_CLOSING_TIME = 22
-ROOM_PREPERATION_TIME = 15
-
-@dataclass
 class Room:
-    room_id:str
-    name:str
-    difficulty:str
-    duration:int
-    min_players:int
-    max_players:int
-    price_per_player:int
-    is_active:bool = True
+    ROOM_OPENING_TIME = 10
+    ROOM_CLOSING_TIME = 22
+    ROOM_PREPERATION_TIME = 15
+    
+    def __init__(self,
+                 room_id:str,
+                 name:str,
+                 difficulty:str,
+                 duration:int,
+                 min_players:int,
+                 max_players:int,
+                 price_per_player:int,
+                 is_active:bool = True):
+        self.room_id = room_id
+        self.name = name
+        self.difficulty = difficulty
+        self.duration = duration
+        self.min_players = min_players
+        self.max_players = max_players
+        self.price_per_player = price_per_player
+        self.is_active = is_active
 
     def activate(self):
         self.is_active = True

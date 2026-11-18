@@ -91,11 +91,11 @@
     "booking_id": "B009",
     "customer_name": "Moti1",
     "room_id": "R001",
-    "booking_date": "2026-11-18",
+    "booking_date": "2026-11-19",
     "start_time": "14:00",
     "players": 5,
     "total_price": 360.0,
-    "status": "Active",
-    "cancellation_fee": 0.0
+    "status": "Cancelled",
+    "cancellation_fee": 90.0
   }
 ]

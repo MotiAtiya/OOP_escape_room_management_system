@@ -1,4 +1,4 @@
-from .room import Room, ROOM_OPENING_TIME, ROOM_CLOSING_TIME, ROOM_PREPERATION_TIME
+from .room import Room
 from .booking import Booking
 from .menu_manager import MenuManager
 from .user_input import UserInput

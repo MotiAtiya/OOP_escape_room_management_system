@@ -1,18 +1,27 @@
-from dataclasses import dataclass
 import datetime
 
 
-@dataclass
 class Booking:
-    booking_id:str
-    customer_name:str
-    room_id:str
-    booking_date:datetime.date
-    start_time:datetime.time
-    players:int
-    total_price:float = 0
-    status:str = "Active"
-    cancellation_fee:float = 0
+    def __init__(self, booking_id:str,
+                 customer_name:str,
+                 room_id:str,
+                 booking_date:datetime.date,
+                 start_time:datetime.time,
+                 players:int,
+                 total_price:float = 0,
+                 status:str = "Active",
+                 cancellation_fee:float = 0):
+        
+        self.booking_id = booking_id
+        self.customer_name = customer_name
+        self.room_id = room_id
+        self.booking_date = booking_date
+        self.start_time = start_time
+        self.players = players
+        self.total_price = total_price
+        self.status = status
+        self.cancellation_fee = cancellation_fee
+
 
     def cancel(self, fee):
         self.status = "Cancelled"

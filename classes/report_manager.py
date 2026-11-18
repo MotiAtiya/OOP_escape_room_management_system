@@ -1,4 +1,4 @@
-from .room import Room, ROOM_OPENING_TIME, ROOM_CLOSING_TIME, ROOM_PREPERATION_TIME
+from .room import Room
 from .booking import Booking
 from .menu_manager import MenuManager
 from .printer import Printer
@@ -99,13 +99,13 @@ class ReportManager:
         room = self.room_manager.search_room_by_id()
         date = UserInput.ask(Parser.parse_date, "Enter booking date [dd/mm/yyyy]: ")
         duration = datetime.timedelta(minutes = room.duration)
-        preparation_time = datetime.timedelta(minutes = ROOM_PREPERATION_TIME)
-        total_activity_time = datetime.timedelta(hours = ROOM_CLOSING_TIME - ROOM_OPENING_TIME)
+        preparation_time = datetime.timedelta(minutes = Room.ROOM_PREPERATION_TIME)
+        total_activity_time = datetime.timedelta(hours = Room.ROOM_CLOSING_TIME - Room.ROOM_OPENING_TIME)
         total_activity_utilization = datetime.timedelta()
 
         for b in self.bookings:
             if b.status == "Active" and b.room_id == room.room_id and b.booking_date == date:
-                if b.get_datetime > b.get_datetime.replace(hour=ROOM_CLOSING_TIME):
+                if b.get_datetime > b.get_datetime.replace(hour = Room.ROOM_CLOSING_TIME):
                     total_activity_utilization += duration
                 else:
                     total_activity_utilization += duration + preparation_time
