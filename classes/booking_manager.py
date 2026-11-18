@@ -6,15 +6,17 @@ from .user_input import UserInput
 from .parser import Parser
 from .room_manager import RoomManager
 from .printer import Printer
+from .data_manager import DataManager
 
 import datetime
 
 class BookingManager:
-    def __init__(self, rooms:list[Room], bookings:list[Booking], room_manager:RoomManager):
+    def __init__(self, rooms:list[Room], bookings:list[Booking], room_manager:RoomManager, data_manager:DataManager):
         self.rooms = rooms
         self.bookings = bookings
         self.room_manager = room_manager
         self.pricing_manager = PricingManager
+        self.data_manager = data_manager
 
         self.menu = MenuManager({
             1: ("Create New Booking", self.add_booking),
@@ -89,7 +91,7 @@ class BookingManager:
         total_price = self.pricing_manager.calculate_price(room, players, booking_date)
         new_booking = Booking(booking_id, customer_name, room_id, booking_date, start_time, players, total_price)
         self.bookings.append(new_booking)
-        # TODO save bookings
+        self.data_manager.save_bookings(self.bookings)
         print(f"\nbooking {booking_id} added successfuly!")
 
 
@@ -119,7 +121,8 @@ class BookingManager:
         booking.start_time = start_time
         booking.players = players
         booking.total_price = total_price
-        # TODO save bookings
+        self.data_manager.save_bookings(self.bookings)
+        print(f"\nbooking {booking_id} updated successfuly!")
 
     def change_booking_details(self):
         booking = self.search_booking_by_id()
@@ -149,7 +152,6 @@ class BookingManager:
             raise ValueError("There are no bookings in the system")
 
         return list(filter(lambda b: b.booking_date == booking_date, self.bookings))
-
 
 
     def search_booking_by_id(self):
@@ -209,7 +211,6 @@ class BookingManager:
         Printer.display_bookings(booking_list)
 
 
-
     def cancel_booking(self, booking_id, current_datetime):
         booking:Booking = self.get_booking(booking_id)
         if booking.status == "Cancelled":
@@ -223,11 +224,10 @@ class BookingManager:
         if user_confirm == 'y':
             booking.status = "Cancelled"
             booking.cancellation_fee = fee
-            # TODO save bookings
+            self.data_manager.save_bookings(self.bookings)
             print(f"\nBooking {booking_id} cancelled successfuly!")
         else:
             print(f"\nCancel cancelled!")
-
 
 
     def cancel(self):

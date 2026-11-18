@@ -68,5 +68,15 @@
     "max_players": 32,
     "price_per_player": 54,
     "is_active": true
+  },
+  {
+    "room_id": "R008",
+    "name": "Try-02",
+    "difficulty": "Medium",
+    "duration": 39,
+    "min_players": 5,
+    "max_players": 35,
+    "price_per_player": 25,
+    "is_active": true
   }
 ]

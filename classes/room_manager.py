@@ -1,14 +1,15 @@
 from .room import Room, ROOM_OPENING_TIME, ROOM_CLOSING_TIME, ROOM_PREPERATION_TIME
 from .booking import Booking
-from .pricing_manager import PricingManager
 from .menu_manager import MenuManager
 from .user_input import UserInput
 from .parser import Parser
 from .printer import Printer
+from .data_manager import DataManager
 
 class RoomManager:
-    def __init__(self, rooms:list[Room]):
+    def __init__(self, rooms:list[Room], data_manager:DataManager):
         self.rooms = rooms
+        self.data_manager = data_manager
 
         self.menu = MenuManager({
             1: ("Display All Rooms", self.display_rooms),
@@ -32,8 +33,8 @@ class RoomManager:
 
 
     def search_room_by_id(self):
-        # if not rooms:
-        #     raise ValueError("There are no rooms in the system")
+        if not self.rooms:
+            raise ValueError("There are no rooms in the system")
         room_id = UserInput.ask(Parser.parse_room_id, "Enter room ID: ")
         return self.get_room_by_id(room_id)
 
@@ -78,7 +79,7 @@ class RoomManager:
                         )
         
         self.rooms.append(new_room)
-        # TODO save rooms
+        self.data_manager.save_rooms(self.rooms)
         print(f"\nroom {name} added successfuly!")
 
 
@@ -99,7 +100,7 @@ class RoomManager:
         room.max_players = max_players
         room.price_per_player = price_per_player
 
-        # TODO save rooms
+        self.data_manager.save_rooms(self.rooms)
         print(f"\nroom {room.name} updated successfuly!")
 
 
@@ -115,13 +116,7 @@ class RoomManager:
         user_confirm = UserInput.ask(Parser.parse_yes_no_confirmation, msg)
         if user_confirm == 'y':
             room.is_active = not room.is_active
-            # TODO save rooms
+            self.data_manager.save_rooms(self.rooms)
             print(f"\nroom {room.name} updated successfuly!")
         else:
             print(f"\nUpdating cancelled!")
-
-
-
-    # def run(self):
-        # self.menu.run()
-        # self.display_rooms()

@@ -17,7 +17,7 @@ class Printer:
                   r.name.ljust(20),
                   r.difficulty.ljust(15),
                   str(r.duration).ljust(10),
-                  str(r.min_players - r.max_players).ljust(10), 
+                  f"{r.min_players} - {r.max_players}".ljust(10), 
                   str(r.price_per_player).ljust(10),
                   "Active" if r.is_active else "Inactive")
 

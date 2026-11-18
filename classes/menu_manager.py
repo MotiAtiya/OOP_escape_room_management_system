@@ -20,7 +20,6 @@ class MenuManager:
         for index, option in self.menu.items():
             print(f"{index}. {option[0]}")
 
-
     def display_enter_to_continue(self):
         input("\n\nPress Enter to continue... ")
 

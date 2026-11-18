@@ -1,5 +1,4 @@
 from classes.escape_room_system import EscapeRoomSystem
-import datetime
 
 def main():
     try:
