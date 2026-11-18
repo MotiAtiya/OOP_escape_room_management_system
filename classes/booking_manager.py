@@ -25,7 +25,8 @@ class BookingManager:
             6: ("Change Booking Details", self.change_booking_details),
             7: ("Cancel Booking", self.cancel),
             8: ("Back to Main Menu", None)
-        })
+        }, lambda: Printer.display_option_title("Booking Management"))
+
 
     def __get_next_booking_id(self):
         latest = max(self.bookings, key=lambda b: b.booking_id[1:])
@@ -234,5 +235,3 @@ class BookingManager:
         current_datetime = datetime.datetime.now()
         self.cancel_booking(booking.booking_id, current_datetime)
     
-
-

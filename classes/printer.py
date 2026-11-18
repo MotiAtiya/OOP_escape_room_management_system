@@ -1,3 +1,5 @@
+import os
+
 class Printer:
 
     @staticmethod
@@ -69,3 +71,32 @@ class Printer:
         print("Total Price:".ljust(20), booking.total_price)
         print("Status:".ljust(20), booking.status)
         print("Cancellation Fee:".ljust(20), booking.cancellation_fee)
+
+
+    @staticmethod
+    def clear_screen():
+        # Clear the terminal screen based on OS
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    @staticmethod
+    def display_system_title(title):
+        Printer.clear_screen()
+        print()
+        print('=' * (len(title) + 14))
+        print(' ' * 7 + title.upper())
+        print('=' * (len(title) + 14))
+        print()
+
+    @staticmethod
+    def display_option_title(option_title):
+        Printer.clear_screen()
+        print(f"\n--------- {option_title.upper()} ---------\n")
+
+
+    @staticmethod
+    def display_function_title(function_title):
+        Printer.clear_screen()
+        print(function_title)
+        print("-" * len(function_title))
+        print()
+

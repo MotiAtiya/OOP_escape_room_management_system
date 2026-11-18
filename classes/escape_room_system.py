@@ -5,8 +5,7 @@ from .booking_manager import BookingManager
 from .room_manager import RoomManager
 from .report_manager import ReportManager
 from .menu_manager import MenuManager
-
-import datetime
+from .printer import Printer
 
 
 class EscapeRoomSystem:
@@ -24,7 +23,8 @@ class EscapeRoomSystem:
             2: ("Bookings Management", self.booking_manager.menu.run),
             # 3: ("Reports", lambda: reports(rooms, bookings)),
             # 4: ("Exit", None)
-        })
+        }, lambda: Printer.display_system_title("ESCAPE ROOM MANAGEMENT SYSTEM"),
+        False)
 
 
     def save_data(self):

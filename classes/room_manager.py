@@ -17,8 +17,7 @@ class RoomManager:
             4: ("Update Room", self.update_room),
             5: ("Active or Inactive Room", self.active_or_inactive_room),
             6: ("Back to Main Menu", None)
-        })
-
+        }, lambda: Printer.display_option_title("Rooms Management"))
 
 
     def display_rooms(self):
@@ -42,7 +41,7 @@ class RoomManager:
     def room_details(self):
         room = self.search_room_by_id()
         Printer.display_room_details(room)
-        
+
 
     def get_next_room_id(self):
         latest = max(self.rooms, key=lambda r: r.room_id[1:])
