@@ -1,24 +1,72 @@
 [
   {
-    "booking_id": "B001",
-    "customer_name": "David Cohen",
     "room_id": "R001",
-    "booking_date": "2026-11-14",
-    "start_time": "10:00",
-    "players": 4,
-    "total_price": 320.0,
-    "status": "Active",
-    "cancellation_fee": 0.0
+    "name": "The Lab",
+    "difficulty": "Easy",
+    "duration": 60,
+    "min_players": 3,
+    "max_players": 8,
+    "price_per_player": 80,
+    "is_active": true
   },
   {
-    "booking_id": "B002",
-    "customer_name": "Sarah Levi",
-    "room_id": "R001",
-    "booking_date": "2026-11-14",
-    "start_time": "11:15",
-    "players": 6,
-    "total_price": 621.0,
-    "status": "Active",
-    "cancellation_fee": 0.0
+    "room_id": "R002",
+    "name": "Dark Castle",
+    "difficulty": "Hard",
+    "duration": 75,
+    "min_players": 3,
+    "max_players": 6,
+    "price_per_player": 120,
+    "is_active": true
+  },
+  {
+    "room_id": "R003",
+    "name": "Lost Temple",
+    "difficulty": "Medium",
+    "duration": 60,
+    "min_players": 2,
+    "max_players": 10,
+    "price_per_player": 90,
+    "is_active": true
+  },
+  {
+    "room_id": "R004",
+    "name": "The Bunker",
+    "difficulty": "Hard",
+    "duration": 90,
+    "min_players": 4,
+    "max_players": 8,
+    "price_per_player": 110,
+    "is_active": false
+  },
+  {
+    "room_id": "R005",
+    "name": "Moti",
+    "difficulty": "Medium",
+    "duration": 50,
+    "min_players": 3,
+    "max_players": 6,
+    "price_per_player": 39,
+    "is_active": true
+  },
+  {
+    "room_id": "R006",
+    "name": "Trying",
+    "difficulty": "Hard",
+    "duration": 40,
+    "min_players": 5,
+    "max_players": 30,
+    "price_per_player": 60,
+    "is_active": true
+  },
+  {
+    "room_id": "R007",
+    "name": "Fdsfsdf",
+    "difficulty": "Medium",
+    "duration": 45,
+    "min_players": 2,
+    "max_players": 32,
+    "price_per_player": 54,
+    "is_active": true
   }
 ]

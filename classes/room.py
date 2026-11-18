@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 
+ROOM_OPENING_TIME = 10
+ROOM_CLOSING_TIME = 22
+ROOM_PREPERATION_TIME = 15
 
 @dataclass
 class Room:
@@ -35,8 +38,11 @@ class Room:
 
     @classmethod
     def from_dict(cls, data):
-        return cls(data['room_id'], data['name'], data['difficulty'], data['duration'],
-                    data['min_players'], data['max_players'], data['price_per_player'], data['is_active'])
-
-
-    
+        return cls(data['room_id'],
+                   data['name'],
+                   data['difficulty'],
+                   data['duration'],
+                   data['min_players'],
+                   data['max_players'],
+                   data['price_per_player'],
+                   data['is_active'])

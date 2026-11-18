@@ -21,13 +21,11 @@ class PricingManager:
 
     @classmethod
     def calculate_cancellation_fee(cls, booking:Booking, current_datetime) -> float:
-        print(repr(booking))
-        # booking_datetime = datetime.datetime.strptime(booking['booking_date'], "%Y-%m-%d")
         fee = 0
-        booking_datetime = booking.booking_date
-        if current_datetime + datetime.timedelta(hours=6) <= booking_datetime <= current_datetime + datetime.timedelta(hours=24):
+                
+        if current_datetime + datetime.timedelta(hours=6) <= booking.get_datetime <= current_datetime + datetime.timedelta(hours=24):
             fee = booking.total_price * 25 / 100
-        elif booking_datetime < current_datetime + datetime.timedelta(hours=6):
+        elif booking.get_datetime < current_datetime + datetime.timedelta(hours=6):
             fee = booking.total_price * 50 / 100
 
         return fee
